@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getArtist } from "../reducers/artist";
 
 const styles = {
   green: "#00cc00",
@@ -20,6 +22,7 @@ class Actions extends Component {
             backgroundColor: styles.red,
             display: "inline-block"
           }}
+          onClick={() => this.props.dispatch(getArtist())}
         />
         <div
           style={{
@@ -33,4 +36,4 @@ class Actions extends Component {
   }
 }
 
-export default Actions;
+export default connect()(Actions);

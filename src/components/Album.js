@@ -1,26 +1,23 @@
 import React, { Component } from "react";
-
-const corsAnywhere = "https://cors-anywhere.herokuapp.com";
-const artistUrl = "https://api.deezer.com/artist";
-const url = `${corsAnywhere}/${artistUrl}`;
+import { connect } from "react-redux";
 
 class Album extends Component {
-  state = { artist: null };
-
-  async componentDidMount() {
-    const id = 13;
-    const response = await fetch(`${url}/${id}`);
-    const artist = await response.json();
-    this.setState({ artist });
-  }
-
   render() {
-    const { artist } = this.state;
+    const { artist } = this.props;
     if (!artist) {
       return <div />
     }
-    return <img src={artist.picture_medium} alt={artist.name}/>;
+    console.log("album", artist);
+    return (
+      <div>
+        <h1>{artist.name}</h1>
+        <img src={artist.picture_medium} alt={artist.name} />
+      </div>
+    );
   }
 }
 
-export default Album;
+const mapStateToProps = state => ({
+  artist: state.artist
+});
+export default connect(mapStateToProps)(Album);

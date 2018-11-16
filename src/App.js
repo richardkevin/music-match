@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import Header from "./components/Header";
 import Album from "./components/Album";
 import Actions from "./components/Actions";
